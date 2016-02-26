@@ -588,11 +588,11 @@ setup_name(State) ->
         {undefined, SName} ->
             check_epmd(net_kernel:start([SName, shortnames]));
         {_, _} ->
-            rebar_utils:abort("Cannot have both short and long node names defined", [])
+            rebar_api:abort("Cannot have both short and long node names defined", [])
     end.
 
 check_epmd({ok, _}) ->
     ok;
 check_epmd({error, Reason}) ->
-    rebar_utils:abort("Erlang Distribution failed: ~p. "
+    rebar_api:abort("Erlang Distribution failed: ~p. "
                       "Verify that epmd is running and try again.", [Reason]).
